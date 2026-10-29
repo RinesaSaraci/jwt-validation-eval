@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Quick benchmark runs (not used in the paper)
+results/timing_quick.json
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
