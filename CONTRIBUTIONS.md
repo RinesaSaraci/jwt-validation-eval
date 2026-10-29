@@ -13,4 +13,4 @@ Fill in before submission; each member must be able to explain the whole project
 Generative AI (Claude, Anthropic) was used to help draft code and text.
 All code was executed and all reported results were produced by running the
 scripts in this repository; the group reviewed and remains responsible for
-the content. _(Adjust this statement to describe your actual use.)_
+the content.
