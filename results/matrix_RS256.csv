@@ -1,0 +1,27 @@
+sid,category,description,expected,C0,C0_reason,C1,C1_reason,C2,C2_reason,C3,C3_reason,C4,C4_reason,C5,C5_reason
+V1,Valid,"Well-formed token, all claims correct",accept,accept,,accept,,reject,InvalidAudienceError,accept,,accept,,accept,
+V2,Valid,aud is an array containing our audience,accept,accept,,accept,,reject,InvalidAudienceError,accept,,accept,,accept,
+S1,Signature,"Payload modified (role=admin), original signature",reject,accept,,reject,InvalidSignatureError,reject,InvalidSignatureError,reject,InvalidSignatureError,reject,InvalidSignatureError,reject,InvalidSignatureError
+S2,Signature,One bit of the signature flipped,reject,accept,,reject,InvalidSignatureError,reject,InvalidSignatureError,reject,InvalidSignatureError,reject,InvalidSignatureError,reject,InvalidSignatureError
+S3,Signature,Signature removed (empty third segment),reject,accept,,reject,InvalidSignatureError,reject,InvalidSignatureError,reject,InvalidSignatureError,reject,InvalidSignatureError,reject,InvalidSignatureError
+S4,Signature,Signed with an attacker-controlled key,reject,accept,,reject,InvalidSignatureError,reject,InvalidSignatureError,reject,InvalidSignatureError,reject,InvalidSignatureError,reject,InvalidSignatureError
+A1,Algorithm,"alg=none, no signature",reject,accept,,reject,InvalidKeyError,reject,InvalidAlgorithmError,reject,InvalidAlgorithmError,reject,InvalidAlgorithmError,reject,InvalidAlgorithmError
+A2,Algorithm,"alg=nOnE (case variant), no signature",reject,accept,,reject,InvalidAlgorithmError,reject,InvalidAlgorithmError,reject,InvalidAlgorithmError,reject,InvalidAlgorithmError,reject,InvalidAlgorithmError
+A3,Algorithm,"RS256->HS256 confusion, public key as HMAC secret",reject,accept,,reject,InvalidKeyError,reject,InvalidAlgorithmError,reject,InvalidAlgorithmError,reject,InvalidAlgorithmError,reject,InvalidAlgorithmError
+A4,Algorithm,"Valid signature, non-allow-listed algorithm",reject,accept,,accept,,reject,InvalidAlgorithmError,reject,InvalidAlgorithmError,reject,InvalidAlgorithmError,reject,InvalidAlgorithmError
+A5,Algorithm,ES256 + attacker key embedded in jwk header,reject,accept,,reject,InvalidKeyError,reject,InvalidAlgorithmError,reject,InvalidAlgorithmError,reject,InvalidAlgorithmError,reject,InvalidAlgorithmError
+I1,Issuer,Wrong issuer,reject,accept,,accept,,reject,InvalidAudienceError,accept,,reject,InvalidIssuerError,reject,InvalidIssuerError
+I2,Issuer,Missing iss claim,reject,accept,,accept,,reject,InvalidAudienceError,accept,,reject,MissingRequiredClaimError,reject,MissingRequiredClaimError
+U1,Audience,Wrong audience (string),reject,accept,,accept,,reject,InvalidAudienceError,accept,,reject,InvalidAudienceError,reject,InvalidAudienceError
+U2,Audience,Missing aud claim,reject,accept,,accept,,accept,,accept,,reject,MissingRequiredClaimError,reject,MissingRequiredClaimError
+U3,Audience,aud array without our audience,reject,accept,,accept,,reject,InvalidAudienceError,accept,,reject,InvalidAudienceError,reject,InvalidAudienceError
+T1,Time,Expired one hour ago,reject,accept,,reject,ExpiredSignatureError,reject,ExpiredSignatureError,reject,ExpiredSignatureError,reject,ExpiredSignatureError,reject,ExpiredSignatureError
+T2,Time,Missing exp claim,reject,accept,,accept,,reject,InvalidAudienceError,accept,,reject,MissingRequiredClaimError,reject,MissingRequiredClaimError
+T3,Time,nbf one hour in the future,reject,accept,,reject,ImmatureSignatureError,reject,ImmatureSignatureError,reject,ImmatureSignatureError,reject,ImmatureSignatureError,reject,ImmatureSignatureError
+T4,Time,iat one hour in the future,reject,accept,,reject,ImmatureSignatureError,reject,ImmatureSignatureError,reject,ImmatureSignatureError,reject,ImmatureSignatureError,reject,ImmatureSignatureError
+T5,Time,exp is a non-numeric string,reject,accept,,reject,DecodeError,reject,DecodeError,reject,DecodeError,reject,DecodeError,reject,DecodeError
+T6,Time,Lifetime of one year (policy max 1 h),reject,accept,,accept,,reject,InvalidAudienceError,accept,,accept,,reject,LifetimeTooLong
+X1,Structure,typ=JWT instead of at+jwt (token-type confusion),reject,accept,,accept,,reject,InvalidAudienceError,accept,,accept,,reject,UnexpectedTokenType
+X2,Structure,Missing sub claim,reject,accept,,accept,,reject,InvalidAudienceError,accept,,reject,MissingRequiredClaimError,reject,MissingRequiredClaimError
+X3,Structure,Only two segments,reject,reject,DecodeError,reject,DecodeError,reject,DecodeError,reject,DecodeError,reject,DecodeError,reject,DecodeError
+X4,Structure,Non-base64 garbage,reject,reject,DecodeError,reject,DecodeError,reject,DecodeError,reject,DecodeError,reject,DecodeError,reject,DecodeError
