@@ -221,6 +221,25 @@ Copy `results/paper/*` into the Overleaf project's `figures/` and `tables/`
 folders after re-running the experiments, so the paper always shows your own
 measurements.
 
+## Results summary
+
+The evaluation compares six JWT validation policies against synthetic token
+scenarios using RS256 and HS256. In the recorded run, C5 accepted both valid
+tokens and rejected all applicable invalid tokens: 24 in RS256 mode and 23 in
+HS256 mode. By comparison, C0 accepted 22 invalid tokens in RS256 mode and 21
+in HS256 mode. C2 rejected both valid test tokens because its default
+audience validation did not match the test tokens.
+
+For C5, the mean validation time for the mixed workload was 97.11 µs per token
+with RS256 and 40.84 µs with HS256. Timing depends on the machine and
+environment; see the [timing results](./results/timing.json). The full
+[decision matrix](./results/summary.json), [outcome figure](./results/paper/fig_outcomes.pdf),
+and [timing figure](./results/paper/fig_timing.pdf) are also available.
+
+## Paper
+
+**Abstract:** _To be added when the paper is finalized._
+
 ## Environment of the reported run
 
 Python 3.13.17, PyJWT 2.15.0, cryptography 50.0.1, Linux x86_64 (2 vCPU,
