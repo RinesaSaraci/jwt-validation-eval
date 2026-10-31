@@ -217,8 +217,9 @@ To try another validation policy, replace `C5` in the URL with `C0`, `C1`,
 `C2`, `C3`, or `C4`. Invalid credentials or a token rejected by the selected
 policy return an error response.
 
-Copy `results/paper/*` into the Overleaf project's `figures/` and `tables/`
-folders after re-running the experiments, so the paper always shows your own
+After re-running the experiments, copy `results/paper/fig_*.pdf` into the
+Overleaf `figures/` folder and paste the rows of `results/paper/tab_*.tex` into
+the matching tables in `main.tex`, so the paper always shows your own
 measurements.
 
 ## Results summary
@@ -227,23 +228,28 @@ The evaluation compares six JWT validation policies against synthetic token
 scenarios using RS256 and HS256. In the recorded run, C5 accepted both valid
 tokens and rejected all applicable invalid tokens: 24 in RS256 mode and 23 in
 HS256 mode. By comparison, C0 accepted 22 invalid tokens in RS256 mode and 21
-in HS256 mode. C2 rejected both valid test tokens because its default
-audience validation did not match the test tokens.
+in HS256 mode. C2 rejected both valid test tokens because they carry an `aud` claim and no
+expected audience was configured.
 
-For C5, the mean validation time for the mixed workload was 97.11 µs per token
-with RS256 and 40.84 µs with HS256. Timing depends on the machine and
+For C5, the mean validation time for the mixed workload was 89.69 µs per token
+with RS256 and 42.50 µs with HS256. Timing depends on the machine and
 environment; see the [timing results](./results/timing.json). The full
 [decision matrix](./results/summary.json), [outcome figure](./results/paper/fig_outcomes.pdf),
 and [timing figure](./results/paper/fig_timing.pdf) are also available.
 
 ## Paper
 
-**Abstract:** _To be added when the paper is finalized._
+**Abstract:** We compare six PyJWT validation configurations against 26
+labelled tokens. Signature and algorithm attacks were rejected by every
+configuration that verifies signatures, but claim errors were not: the library
+default rejected all valid tokens, and disabling the audience check let 9 of 24
+invalid tokens through. An explicit RFC 8725 configuration accepted 2, and two
+application-level checks reduced this to 0, at about 4% extra validation time.
 
 ## Environment of the reported run
 
-Python 3.13.17, PyJWT 2.15.0, cryptography 50.0.1, Linux x86_64 (2 vCPU,
-Intel Xeon @ 2.10 GHz). Timing numbers depend on hardware; decisions do not.
+Python 3.14.8, PyJWT 2.15.0, cryptography 50.0.1, Windows 11 (AMD64 laptop).
+Timing numbers depend on hardware; decisions do not.
 
 ## Safety
 
