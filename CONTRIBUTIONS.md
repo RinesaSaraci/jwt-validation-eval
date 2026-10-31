@@ -20,6 +20,7 @@ Every member reviewed the whole project and can explain all of its parts.
 - **Code:** project scaffold (`.gitignore`, `requirements.txt`, `README.md`),
   the FastAPI prototype (`app/main.py`), the validator-level and API-level
   test suites (`tests/`), and the API usage and results sections of the README.
+- **Testing:** ran `python -m unittest discover -s . -p "test_*.py" -v` and verified the test suite passes.
 - **Paper:** Background and Method; checked them against the code; checked
   the CVE and web references; wrote the AI-use declaration.
 - **Presentation:** slides 6–10 (token scenarios, procedure, headline result,
