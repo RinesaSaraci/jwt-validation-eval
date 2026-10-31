@@ -1,0 +1,32 @@
+V1 & Well-formed token, all claims correct & \cmark & \cmark & \cmark & \cellcolor{bad}\xmark & \cmark & \cmark & \cmark \\
+V2 & aud is an array containing our audience & \cmark & \cmark & \cmark & \cellcolor{bad}\xmark & \cmark & \cmark & \cmark \\
+\midrule
+S1 & Payload modified (role=admin), original signature & \xmark & \cellcolor{bad}\cmark & \xmark & \xmark & \xmark & \xmark & \xmark \\
+S2 & One bit of the signature flipped & \xmark & \cellcolor{bad}\cmark & \xmark & \xmark & \xmark & \xmark & \xmark \\
+S3 & Signature removed (empty third segment) & \xmark & \cellcolor{bad}\cmark & \xmark & \xmark & \xmark & \xmark & \xmark \\
+S4 & Signed with an attacker-controlled key & \xmark & \cellcolor{bad}\cmark & \xmark & \xmark & \xmark & \xmark & \xmark \\
+\midrule
+A1 & alg=none, no signature & \xmark & \cellcolor{bad}\cmark & \xmark & \xmark & \xmark & \xmark & \xmark \\
+A2 & alg=nOnE (case variant), no signature & \xmark & \cellcolor{bad}\cmark & \xmark & \xmark & \xmark & \xmark & \xmark \\
+A3 & RS256$\rightarrow$HS256 confusion, public key as HMAC secret & \xmark & \cellcolor{bad}\cmark & \xmark & \xmark & \xmark & \xmark & \xmark \\
+A4 & Valid signature, non-allow-listed algorithm & \xmark & \cellcolor{bad}\cmark & \cellcolor{bad}\cmark & \xmark & \xmark & \xmark & \xmark \\
+A5 & ES256 + attacker key embedded in jwk header & \xmark & \cellcolor{bad}\cmark & \xmark & \xmark & \xmark & \xmark & \xmark \\
+\midrule
+I1 & Wrong issuer & \xmark & \cellcolor{bad}\cmark & \cellcolor{bad}\cmark & \xmark & \cellcolor{bad}\cmark & \xmark & \xmark \\
+I2 & Missing iss claim & \xmark & \cellcolor{bad}\cmark & \cellcolor{bad}\cmark & \xmark & \cellcolor{bad}\cmark & \xmark & \xmark \\
+\midrule
+U1 & Wrong audience (string) & \xmark & \cellcolor{bad}\cmark & \cellcolor{bad}\cmark & \xmark & \cellcolor{bad}\cmark & \xmark & \xmark \\
+U2 & Missing aud claim & \xmark & \cellcolor{bad}\cmark & \cellcolor{bad}\cmark & \cellcolor{bad}\cmark & \cellcolor{bad}\cmark & \xmark & \xmark \\
+U3 & aud array without our audience & \xmark & \cellcolor{bad}\cmark & \cellcolor{bad}\cmark & \xmark & \cellcolor{bad}\cmark & \xmark & \xmark \\
+\midrule
+T1 & Expired one hour ago & \xmark & \cellcolor{bad}\cmark & \xmark & \xmark & \xmark & \xmark & \xmark \\
+T2 & Missing exp claim & \xmark & \cellcolor{bad}\cmark & \cellcolor{bad}\cmark & \xmark & \cellcolor{bad}\cmark & \xmark & \xmark \\
+T3 & nbf one hour in the future & \xmark & \cellcolor{bad}\cmark & \xmark & \xmark & \xmark & \xmark & \xmark \\
+T4 & iat one hour in the future & \xmark & \cellcolor{bad}\cmark & \xmark & \xmark & \xmark & \xmark & \xmark \\
+T5 & exp is a non-numeric string & \xmark & \cellcolor{bad}\cmark & \xmark & \xmark & \xmark & \xmark & \xmark \\
+T6 & Lifetime of one year (policy max 1 h) & \xmark & \cellcolor{bad}\cmark & \cellcolor{bad}\cmark & \xmark & \cellcolor{bad}\cmark & \cellcolor{bad}\cmark & \xmark \\
+\midrule
+X1 & typ=JWT instead of at+jwt (token-type confusion) & \xmark & \cellcolor{bad}\cmark & \cellcolor{bad}\cmark & \xmark & \cellcolor{bad}\cmark & \cellcolor{bad}\cmark & \xmark \\
+X2 & Missing sub claim & \xmark & \cellcolor{bad}\cmark & \cellcolor{bad}\cmark & \xmark & \cellcolor{bad}\cmark & \xmark & \xmark \\
+X3 & Only two segments & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark \\
+X4 & Non-base64 garbage & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark \\

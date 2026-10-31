@@ -1,0 +1,98 @@
+{
+  "environment": {
+    "python": "3.14.8",
+    "pyjwt": "2.15.0",
+    "cryptography": "50.0.1",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "processor": "AMD64 Family 25 Model 80 Stepping 0, AuthenticAMD"
+  },
+  "params": {
+    "reps": 10,
+    "n_valid": 5000,
+    "n_mixed": 400
+  },
+  "modes": {
+    "RS256": {
+      "C0": {
+        "valid_mean_us": 48.932932,
+        "valid_sd_us": 4.08338784683285,
+        "mixed_mean_us": 40.842918269230765,
+        "mixed_sd_us": 1.4493384077250708
+      },
+      "C1": {
+        "valid_mean_us": 157.539978,
+        "valid_sd_us": 9.068312047772359,
+        "mixed_mean_us": 126.419275,
+        "mixed_sd_us": 2.136046461922539
+      },
+      "C2": {
+        "valid_mean_us": 107.638666,
+        "valid_sd_us": 1.7398490108448417,
+        "mixed_mean_us": 86.12685,
+        "mixed_sd_us": 2.5533353152431286
+      },
+      "C3": {
+        "valid_mean_us": 106.38704,
+        "valid_sd_us": 2.6441176767055343,
+        "mixed_mean_us": 85.62446442307693,
+        "mixed_sd_us": 1.4619757612703286
+      },
+      "C4": {
+        "valid_mean_us": 113.294572,
+        "valid_sd_us": 3.094594900779242,
+        "mixed_mean_us": 89.34009903846155,
+        "mixed_sd_us": 3.158357553809654
+      },
+      "C5": {
+        "valid_mean_us": 117.732764,
+        "valid_sd_us": 6.587173931066007,
+        "mixed_mean_us": 89.68738365384615,
+        "mixed_sd_us": 3.2858968418245897
+      },
+      "C4k": {
+        "valid_mean_us": 80.942566,
+        "valid_sd_us": 0.9490109874109309,
+        "mixed_mean_us": 66.11343076923077,
+        "mixed_sd_us": 0.9949451882251195
+      }
+    },
+    "HS256": {
+      "C0": {
+        "valid_mean_us": 28.654334,
+        "valid_sd_us": 0.44309199897989615,
+        "mixed_mean_us": 27.782837999999998,
+        "mixed_sd_us": 0.6809118165584205
+      },
+      "C1": {
+        "valid_mean_us": 72.27666,
+        "valid_sd_us": 4.23181945359466,
+        "mixed_mean_us": 65.434888,
+        "mixed_sd_us": 1.286235053417528
+      },
+      "C2": {
+        "valid_mean_us": 50.16592,
+        "valid_sd_us": 4.489070280076563,
+        "mixed_mean_us": 40.158223,
+        "mixed_sd_us": 0.5065489391087723
+      },
+      "C3": {
+        "valid_mean_us": 63.25077,
+        "valid_sd_us": 15.921216017347557,
+        "mixed_mean_us": 50.017002,
+        "mixed_sd_us": 6.1318344921543115
+      },
+      "C4": {
+        "valid_mean_us": 75.99453199999999,
+        "valid_sd_us": 15.610397028565288,
+        "mixed_mean_us": 44.759431,
+        "mixed_sd_us": 3.871742280209978
+      },
+      "C5": {
+        "valid_mean_us": 51.29473,
+        "valid_sd_us": 1.1194240841214331,
+        "mixed_mean_us": 42.501021,
+        "mixed_sd_us": 0.5173104132905996
+      }
+    }
+  }
+}
